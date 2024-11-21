@@ -3,4 +3,5 @@ pip3 install rembg tqdm omegaconf matplotlib opencv-python imageio jaxtyping ein
 pip3 install SentencePiece accelerate trimesh PyMCubes xatlas libigl ninja gradio roma
 pip3 install git+https://github.com/facebookresearch/pytorch3d@stable
 pip3 install git+https://github.com/NVlabs/nvdiffrast
-pip3 install open3d
+pip3 install open3d 
+echo "manually install open3d wheel for torch 3.12"

@@ -1,0 +1,1203 @@
+{
+  "last_node_id": 43,
+  "last_link_id": 53,
+  "nodes": [
+    {
+      "id": 23,
+      "type": "VAELoader",
+      "pos": {
+        "0": -2000,
+        "1": 270
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            40
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.sft"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 20,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": -2000,
+        "1": 110
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            30
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "flux"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 31,
+      "type": "FluxGuidance",
+      "pos": {
+        "0": -1262,
+        "1": -234
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 58
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            44
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.5
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 29,
+      "type": "BasicGuider",
+      "pos": {
+        "0": -1260,
+        "1": 100
+      },
+      "size": {
+        "0": 241.79998779296875,
+        "1": 46
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 32
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            33
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      },
+      "widgets_values": [],
+      "shape": "box"
+    },
+    {
+      "id": 27,
+      "type": "BasicScheduler",
+      "pos": {
+        "0": -1260,
+        "1": -60
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 45
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            34
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "beta",
+        20,
+        1
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 33,
+      "type": "KSamplerSelect",
+      "pos": {
+        "0": -1260,
+        "1": 420
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            38
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 32,
+      "type": "EmptyLatentImage",
+      "pos": {
+        "0": -1260,
+        "1": 250
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            37
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 30,
+      "type": "RandomNoise",
+      "pos": {
+        "0": -1260,
+        "1": 550
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            35
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        158919931262134,
+        "fixed"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 34,
+      "type": "VAEDecode",
+      "pos": {
+        "0": -787,
+        "1": 251
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 39
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            47,
+            53
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "shape": "box"
+    },
+    {
+      "id": 36,
+      "type": "PreviewImage",
+      "pos": {
+        "0": -789,
+        "1": 456
+      },
+      "size": {
+        "0": 210,
+        "1": 246
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 47
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "shape": "box"
+    },
+    {
+      "id": 25,
+      "type": "LoraLoader",
+      "pos": {
+        "0": -1660,
+        "1": 30
+      },
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 31
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            32,
+            45
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            46
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "ikea-sofa.safetensors",
+        1,
+        1
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 22,
+      "type": "UNETLoader",
+      "pos": {
+        "0": -2000,
+        "1": -40
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            31
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "flux1-dev.sft",
+        "default"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 19,
+      "type": "easy imageRemBg",
+      "pos": {
+        "0": -260,
+        "1": 230
+      },
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            28
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            29
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy imageRemBg"
+      },
+      "widgets_values": [
+        "RMBG-1.4",
+        "Preview",
+        "ComfyUI",
+        false
+      ]
+    },
+    {
+      "id": 14,
+      "type": "ImageResizeKJ",
+      "pos": {
+        "0": 100,
+        "1": 10
+      },
+      "size": {
+        "0": 315,
+        "1": 266
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 28
+        },
+        {
+          "name": "get_image_size",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "width_input",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "width_input"
+          },
+          "shape": 7
+        },
+        {
+          "name": "height_input",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "height_input"
+          },
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJ"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        "nearest-exact",
+        false,
+        2,
+        0,
+        0,
+        "disabled"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "ResizeMask",
+      "pos": {
+        "0": 100,
+        "1": 330
+      },
+      "size": {
+        "0": 315,
+        "1": 146
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            21
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeMask"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "InvertMask",
+      "pos": {
+        "0": 210,
+        "1": 520
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 19,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            11
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 7,
+      "type": "StableFast3DLoader",
+      "pos": {
+        "0": 470,
+        "1": 20
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sf3d_model",
+          "type": "SF3D_MODEL",
+          "links": [
+            8
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StableFast3DLoader"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "StableFast3DSave",
+      "pos": {
+        "0": 810,
+        "1": 10
+      },
+      "size": [
+        600,
+        512
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "link": 50
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "StableFast3DSave"
+      },
+      "widgets_values": [
+        "SF3D",
+        null
+      ]
+    },
+    {
+      "id": 28,
+      "type": "SamplerCustomAdvanced",
+      "pos": {
+        "0": -856,
+        "1": -142
+      },
+      "size": {
+        "0": 355.20001220703125,
+        "1": 326
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 35
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 33
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 38
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 34
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 37
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            39
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      },
+      "widgets_values": [],
+      "shape": "box"
+    },
+    {
+      "id": 35,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": -1690,
+        "1": -300
+      },
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 46
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            43
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A large, multisectional Ikea sofa, plush, green, and upholstered, on a white background. The sofa is slightly angled. ikea_sofa"
+      ],
+      "shape": "box"
+    },
+    {
+      "id": 8,
+      "type": "StableFast3DSampler",
+      "pos": {
+        "0": 460,
+        "1": 190
+      },
+      "size": {
+        "0": 315,
+        "1": 190
+      },
+      "flags": {
+        "pinned": true
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "SF3D_MODEL",
+          "link": 8
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 11,
+          "shape": 7
+        },
+        {
+          "name": "remesh",
+          "type": "none",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mesh",
+          "type": "MESH",
+          "links": [
+            50
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StableFast3DSampler"
+      },
+      "widgets_values": [
+        0.85,
+        1024,
+        "triangle",
+        -1
+      ]
+    },
+    {
+      "id": 39,
+      "type": "LoadImage",
+      "pos": {
+        "0": -250,
+        "1": -120
+      },
+      "size": {
+        "0": 210.45960998535156,
+        "1": 290
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "fridhult-sleeper-sofa-skiftebo-yellow__1265821_pe927821_s5.jpg",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      8,
+      7,
+      0,
+      8,
+      0,
+      "SF3D_MODEL"
+    ],
+    [
+      11,
+      6,
+      0,
+      8,
+      2,
+      "MASK"
+    ],
+    [
+      19,
+      14,
+      0,
+      8,
+      1,
+      "IMAGE"
+    ],
+    [
+      21,
+      15,
+      0,
+      6,
+      0,
+      "MASK"
+    ],
+    [
+      28,
+      19,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      19,
+      1,
+      15,
+      0,
+      "MASK"
+    ],
+    [
+      30,
+      20,
+      0,
+      25,
+      1,
+      "CLIP"
+    ],
+    [
+      31,
+      22,
+      0,
+      25,
+      0,
+      "MODEL"
+    ],
+    [
+      32,
+      25,
+      0,
+      29,
+      0,
+      "MODEL"
+    ],
+    [
+      33,
+      29,
+      0,
+      28,
+      1,
+      "GUIDER"
+    ],
+    [
+      34,
+      27,
+      0,
+      28,
+      3,
+      "SIGMAS"
+    ],
+    [
+      35,
+      30,
+      0,
+      28,
+      0,
+      "NOISE"
+    ],
+    [
+      37,
+      32,
+      0,
+      28,
+      4,
+      "LATENT"
+    ],
+    [
+      38,
+      33,
+      0,
+      28,
+      2,
+      "SAMPLER"
+    ],
+    [
+      39,
+      28,
+      0,
+      34,
+      0,
+      "LATENT"
+    ],
+    [
+      40,
+      23,
+      0,
+      34,
+      1,
+      "VAE"
+    ],
+    [
+      43,
+      35,
+      0,
+      31,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      44,
+      31,
+      0,
+      29,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      45,
+      25,
+      0,
+      27,
+      0,
+      "MODEL"
+    ],
+    [
+      46,
+      25,
+      1,
+      35,
+      0,
+      "CLIP"
+    ],
+    [
+      47,
+      34,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      50,
+      8,
+      0,
+      9,
+      0,
+      "MESH"
+    ],
+    [
+      53,
+      34,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Flux Image Generation",
+      "bounding": [
+        -2010,
+        -374,
+        1519,
+        1086
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "StableFast3D",
+      "bounding": [
+        -270,
+        -190,
+        1690,
+        745
+      ],
+      "color": "#a1309b",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5644739300537776,
+      "offset": [
+        2332.0699466570004,
+        1056.8282752370003
+      ]
+    }
+  },
+  "version": 0.4
+}

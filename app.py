@@ -3,25 +3,6 @@
 # The below Model in this distribution may have been modified by THL A29 Limited 
 # ("Tencent Modifications"). All Tencent Modifications are Copyright (C) 2024 THL A29 Limited.
 
-# Copyright (C) 2024 THL A29 Limited, a Tencent company.  All rights reserved. 
-# The below software and/or models in this distribution may have been 
-# modified by THL A29 Limited ("Tencent Modifications"). 
-# All Tencent Modifications are Copyright (C) THL A29 Limited.
-
-# Hunyuan 3D is licensed under the TENCENT HUNYUAN NON-COMMERCIAL LICENSE AGREEMENT 
-# except for the third-party components listed below. 
-# Hunyuan 3D does not impose any additional limitations beyond what is outlined 
-# in the repsective licenses of these third-party components. 
-# Users must comply with all terms and conditions of original licenses of these third-party 
-# components and must ensure that the usage of the third party components adheres to 
-# all relevant laws and regulations. 
-
-# For avoidance of doubts, Hunyuan 3D means the large language models and 
-# their software and algorithms, including trained model weights, parameters (including 
-# optimizer states), machine-learning model code, inference-enabling code, training-enabling code, 
-# fine-tuning enabling code and other elements of the foregoing made publicly available 
-# by Tencent in accordance with TENCENT HUNYUAN COMMUNITY LICENSE AGREEMENT.
-
 import os
 import warnings
 import argparse
@@ -67,10 +48,6 @@ args = parser.parse_args()
 ################################################################
 
 
-CONST_HEADER = '''
-<h2><a href='https://github.com/tencent/Hunyuan3D-1' target='_blank'><b>Tencent Hunyuan3D-1.0: A Unified Framework for Text-to-3D and Image-to-3D Generation</b></a></h2>
-⭐️Technical report: <a href='https://arxiv.org/pdf/2411.02293' target='_blank'>ArXiv</a>. ⭐️Code: <a href='https://github.com/tencent/Hunyuan3D-1' target='_blank'>GitHub</a>.
-'''
 
 CONST_NOTE = '''
 ❗️❗️❗️Usage❗️❗️❗️<br>
@@ -268,7 +245,6 @@ def update_mode(mode):
 # ===============================================================
 
 with gr.Blocks() as demo:
-    gr.Markdown(CONST_HEADER)
     with gr.Row(variant="panel"):
         
         ###### Input region
@@ -279,7 +255,7 @@ with gr.Blocks() as demo:
             
             with gr.Tab("Text to 3D"):
                 with gr.Column():
-                    text = gr.TextArea('一只黑白相间的熊猫在白色背景上居中坐着，呈现出卡通风格和可爱氛围。', 
+                    text = gr.TextArea("A blocky sign spelling out \"NeuronsLab\"", 
                                        lines=3, max_lines=20, label='Input text (within 70 words)')
 
                     textgen_mode = gr.Radio(
@@ -668,7 +644,7 @@ with gr.Blocks() as demo:
     #===============================================================
     # start gradio server
     #===============================================================
-    CONST_PORT = 8080
+    CONST_PORT = 7860
     CONST_MAX_QUEUE = 1
     CONST_SERVER = '0.0.0.0'
 
